@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import styles from './Searchbar.module.css'
 
 class Searchbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  
+    state = {
       query: '',
     };
-  }
+ 
 
   handleSubmit = (e) => {
     e.preventDefault();

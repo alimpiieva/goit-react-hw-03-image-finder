@@ -1,44 +1,17 @@
-import { Component } from 'react';
-import * as basicLightbox from 'basiclightbox';
-import 'basiclightbox/dist/basicLightbox.min.css';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styles from './Modal.module.css';
 
 class Modal extends Component {
   componentDidMount() {
-    this.openLightbox();
     document.addEventListener('keydown', this.handleKeyDown);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.imageData !== this.props.imageData) {
-      this.closeLightbox();
-      this.openLightbox();
-    }
-  }
-
   componentWillUnmount() {
-    this.closeLightbox();
     document.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  openLightbox() {
-    const { imageData } = this.props;
-    if (imageData) {
-      this.instance = basicLightbox.create(`
-        <img src="${imageData.largeImageURL}" alt="" />
-      `);
-      this.instance.show();
-    }
-  }
-
-  closeLightbox() {
-    if (this.instance) {
-      this.instance.close();
-      this.instance = null;
-    }
-  }
-
-  handleKeyDown = event => {
+  handleKeyDown = (event) => {
     if (event.key === 'Escape') {
       const { onClose } = this.props;
       if (onClose) {
@@ -47,8 +20,31 @@ class Modal extends Component {
     }
   };
 
+  handleClose = (event) => {
+    const { onClose } = this.props;
+    if (event.target === event.currentTarget && onClose) {
+      onClose();
+    }
+  };
+
+  handleImageClick = (event) => {
+    event.stopPropagation();
+  };
+
   render() {
-    return null;
+    const { imageData } = this.props;
+
+    return (
+      <div className={styles['modal-overlay']} onClick={this.handleClose}>
+        <div className={styles['modal-content']}>
+          <img
+            src={imageData.largeImageURL}
+            alt=""
+            onClick={this.handleImageClick}
+          />
+        </div>
+      </div>
+    );
   }
 }
 

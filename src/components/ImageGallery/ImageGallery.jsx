@@ -17,13 +17,6 @@ class ImageGallery extends Component {
     selectedImage: null,
   };
 
-  componentDidMount() {
-    const { searchQuery } = this.props;
-    if (searchQuery) {
-      this.fetchImages(searchQuery);
-    }
-  }
-
   componentDidUpdate(prevProps) {
     if (prevProps.searchQuery !== this.props.searchQuery) {
       const { searchQuery } = this.props;
