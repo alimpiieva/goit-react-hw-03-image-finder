@@ -56,7 +56,6 @@ class Searchbar extends Component {
 
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
 };
 
 export default Searchbar;
