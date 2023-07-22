@@ -7,7 +7,12 @@ import styles from './ImageGallery.module.css';
 
 class ImageGallery extends Component {
   static propTypes = {
-    images: PropTypes.array.isRequired,
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        webformatURL: PropTypes.string.isRequired,
+      })
+    ).isRequired,
     onImageClick: PropTypes.func.isRequired,
   };
 

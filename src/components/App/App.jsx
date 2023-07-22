@@ -37,13 +37,6 @@ class App extends Component {
     });
   };
 
-  handleClose = (event) => {
-    const { onClose } = this.props;
-    if (event.target === event.currentTarget) {
-      onClose();
-    }
-  };
-
   handleLoadMore = () => {
     this.setState(
       (prevState) => ({

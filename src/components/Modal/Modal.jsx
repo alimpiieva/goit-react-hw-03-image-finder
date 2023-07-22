@@ -20,7 +20,7 @@ class Modal extends Component {
 
   handleClose = (event) => {
     const { onClose } = this.props;
-    if (event.target === event.currentTarget && onClose) {
+    if (event.target === event.currentTarget) {
       onClose();
     }
   };

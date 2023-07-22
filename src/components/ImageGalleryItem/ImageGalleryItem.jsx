@@ -16,10 +16,12 @@ const ImageGalleryItem = ({ imageData, alt, onClick }) => {
 
 ImageGalleryItem.propTypes = {
   imageData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     webformatURL: PropTypes.string.isRequired,
   }).isRequired,
 
-  onClick: PropTypes.func.isRequired,
+  alt: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,           
 };
 
 export default ImageGalleryItem;
