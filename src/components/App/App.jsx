@@ -51,11 +51,12 @@ class App extends Component {
 
     fetchImages(searchQuery, page)
       .then((formattedImages) => {
+        const hasMoreImages = formattedImages.length === 12;
         this.setState((prevState) => ({
           images: [...prevState.images, ...formattedImages],
           isLoading: false,
           noImagesFound: formattedImages.length === 0,
-          hasMoreImages: formattedImages.length === 12,
+          hasMoreImages,
         }));
       })
       .catch((error) => {
